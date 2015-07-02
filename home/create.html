@@ -1,0 +1,54 @@
+{% load staticfiles %}
+<html>
+<header>
+  <title> Paste of Code by piratos </title>
+  <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" type="text/css" rel="stylesheet">
+  <link href="{% static 'code.css' %}" type="text/css" rel="stylesheet">
+  <link href="{% static 'theme/github.css' %}" type="text/css" rel="stylesheet">
+</header
+<body>
+  <div id="head">
+    <div id="title">
+      <span style="font-size:0.7em">This paste is powered by</span>
+      <a href="http://sayfhammemi.me"><span style="font-size:2em;"> Sayf Eddine Hammemi </span></a>
+    </div>
+      <h3> ## enjoy sharing the code ! ## </h3>
+        <h3 id="share"> the source code of this application is freely avalailable on my <a href="github.com/piratos" >github account</a> </h3>
+  </div>
+  <form action="" method="post">
+    {%csrf_token%}
+    <div id="codetext">
+      <input  type="submit" value="Paste !" class="btn btn-info" style="width: 90%;">
+
+      <textarea spellcheck='false' name="code" ></textarea>
+    </div>
+  </form>
+  <footer>
+    Licence : Feel free to redistribute, copy or modify without telling me !
+  </footer>
+  <script src="{% static 'Jquery.js' %}"></script>
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'highlight.pack.js' %}"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>
+  $(document).delegate('textarea', 'keydown', function(e) {
+  var keyCode = e.keyCode || e.which;
+
+  if (keyCode == 9) {
+    e.preventDefault();
+    var start = $(this).get(0).selectionStart;
+    var end = $(this).get(0).selectionEnd;
+
+    // set textarea value to: text before caret + tab + text after caret
+    $(this).val($(this).val().substring(0, start)
+                + "\t"
+                + $(this).val().substring(end));
+
+    // put caret at right position again
+    $(this).get(0).selectionStart =
+    $(this).get(0).selectionEnd = start + 1;
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+h3 {
+    text-align: center;
+}
+#code {
+  border: 3px dotted black;
+  border-radius: 10px;
+    font-size: 1.12em;
+}
+#share {
+    text-decoration: underline;
+}
+#title {
+  text-align: center;
+}
+#codetext {
+    text-align: center;
+}
+textarea {
+  width: 90%;
+  height: 900px;
+  font-family: monospace;
+  font-size: 1.13em;
+  resize: none;
+}
