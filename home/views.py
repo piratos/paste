@@ -18,6 +18,8 @@ def create(request):
 			return render(request, "home/create.html", locals())
 		else:
 			code = request.POST["code"]
+			if len(code) == 0:
+				return render(request, "home/create.html", {})
 			name = get_next_hash()
 			paste = Paste.objects.create(name=name, code=code)
 			paste.save()
@@ -37,6 +39,7 @@ def get_next_hash():
 			name = name[:i] + chr( ord(name[i])+1) + name[i+1:]
 			break
 		else:
+			name = name[:i] + "A" + name[i+1:]
 			i-=1
 	if i == -1:
 		name = name + "A"
